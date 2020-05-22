@@ -9,6 +9,12 @@ namespace WebApplication1.Controllers
 {
     public class ItemController : Controller
     {
+        // ค้นหาข้อมูล Select * FROM Item
+        public IActionResult Index()
+        {
+            return View();
+        }
+
         [HttpGet]
         public IActionResult InsertItem()
         {
