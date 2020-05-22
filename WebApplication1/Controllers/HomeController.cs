@@ -11,6 +11,7 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
+        // Edit Somthing
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
