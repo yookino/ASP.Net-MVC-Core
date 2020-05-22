@@ -1,11 +1,12 @@
-﻿
+﻿@model List<Item>
+
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
 
-<form>
+<form method="post">
     <div class="form-group row">
         <label for="itemid" class="col-sm-2 col-form-label">Item ID</label>
         <div class="col-sm-10">
@@ -19,4 +20,49 @@
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
+
+    @if (Model != null)
+    {
+        @foreach (var item in Model)
+        {
+            @item.ItemId;
+        }
+    }
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Item Id</th>
+                <th scope="col">Item Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ItemId</td>
+                        <td>@item.ItemName</td>
+                    </tr>
+                }
+            }
+            @*<tr>
+                <th scope="row">1</th>
+                <td>1</td>
+                <td>Item 1</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>2</td>
+                <td>Item 2</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>3</td>
+                <td>Item 3</td>
+            </tr>*@
+        </tbody>
+    </table>
+
 </form>
