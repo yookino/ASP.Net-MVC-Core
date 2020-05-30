@@ -6,6 +6,9 @@
 
 <h1>Index</h1>
 
+<a class="btn btn-info"
+   asp-controller="Item" asp-action="InsertItem">Insert</a>
+
 <form method="post">
     <div class="form-group row">
         <label for="itemid" class="col-sm-2 col-form-label">Item ID</label>
@@ -21,19 +24,12 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 
-    @if (Model != null)
-    {
-        @foreach (var item in Model)
-        {
-            @item.ItemId;
-        }
-    }
-
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">Item Id</th>
                 <th scope="col">Item Name</th>
+                <th>Edit</th>
             </tr>
         </thead>
         <tbody>
@@ -44,25 +40,50 @@
                     <tr>
                         <td>@item.ItemId</td>
                         <td>@item.ItemName</td>
+                        <td>
+                            <a class="btn btn-outline-success"
+                               asp-controller="Item"
+                               asp-action="Update"
+                               asp-route-id="@item.ItemId">Update</a>
+
+                            <a class="btn btn-outline-danger"
+                               id="btn-delete"
+                               asp-controller="Item"
+                               asp-action="Delete"
+                               asp-route-id="@item.ItemId">Delete</a>
+
+                        </td>
                     </tr>
                 }
             }
             @*<tr>
-                <th scope="row">1</th>
-                <td>1</td>
-                <td>Item 1</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>2</td>
-                <td>Item 2</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>3</td>
-                <td>Item 3</td>
-            </tr>*@
+                    <th scope="row">1</th>
+                    <td>1</td>
+                    <td>Item 1</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>2</td>
+                    <td>Item 2</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>3</td>
+                    <td>Item 3</td>
+                </tr>*@
         </tbody>
     </table>
 
+    @section Scripts
+    {
+        <script>
+            $(document).ready(function () { // on page load
+
+                $('#btn-delete').click(function () {
+                    return confirm('ยืนยันการลบข้อมูล?');
+                }); // click
+
+            }); // end $(document).read
+        </script>
+    }
 </form>

@@ -51,5 +51,37 @@ namespace WebApplication1.Controllers
 
             return Json(item);
         }
+
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            TestContext context = new TestContext();
+            var item = context.Item.Find(id);
+
+            return View(item);
+        }
+
+        [HttpPost]
+        public IActionResult Update
+            (Item item)
+        {
+            TestContext context = new TestContext();
+            context.Item.Update(item);
+            context.SaveChanges();
+
+            return View(item);
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            TestContext context = new TestContext();
+            var item = context.Item.Find(id);
+            
+            context.Item.Remove(item);
+            context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }
